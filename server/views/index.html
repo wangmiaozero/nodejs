@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./index.css">
+  <link rel="stylesheet" href="../semantic/dist/semantic.min.css">
+  <script src="./jquery-3.1.0.js"></script>
+  <script src="../semantic/dist/semantic.min.js"></script>
+  <script src="./template-web.js"></script>
+  <script src="./index.js"></script>
+</head>
+
+<body>
+  <h1>英雄列表</h1>
+  <button class="ui primary button" id="add">添加英雄</button>
+  <!-- 表格区域 -->
+  <table class="ui celled striped blue table">
+    <thead>
+      <tr>
+        <th>编号</th>
+        <th>英雄名称</th>
+        <th>性别</th>
+        <th>创建时间</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody id="tbd">
+    </tbody>
+  </table>
+  <!-- 对话框 -->
+  <div class="ui tiny modal" id="tianjia">
+    <div class="header">
+      添加新英雄
+    </div>
+    <div class="content">
+      <form class="ui form">
+        <div class="field">
+          <label>名称：</label>
+          <input type="text" name="name" placeholder="请输入英雄名称">
+        </div>
+        <div class="field">
+          <label>性别：</label>
+          <select name="gender" class="ui fluid dropdown">
+            <option value="男">男</option>
+            <option value="女">女</option>
+          </select>
+        </div>
+      </form>
+    </div>
+    <div class="actions">
+      <div class="ui black deny button">
+        取消
+      </div>
+      <div class="ui positive right button" id="btnAdd">
+        添加
+      </div>
+    </div>
+  </div>
+  <!-- -------------------------- -->
+  <div class="ui basic modal" id="updateBox">
+    <div class="ui icon header">
+      <i class="archive icon"></i>
+
+      <div class="header">
+        编辑英雄
+      </div>
+      <div class="content" id="content">
+        <!-- 被渲染的地方 -->
+      </div>
+      <div class="actions">
+        <div class="ui black deny button">
+          取消
+        </div>
+        <div class="ui positive right button" id="btnAdd">
+          编辑
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- 取消框 -->
+  <script type="text/template" id="row">
+    <% for(var i=0; i< data.length;i++){%>
+      <tr data-id="<%=data[i].id%>">
+        <td>
+          <div class="ui ribbon label <%=data[i].isdel === 0 ? 'blue' : 'red'%>"><%=data[i].isdel === 0 ? '正常' : '删除'%></div>
+         <%=data[i].id%>
+        </td>
+        <td><%=data[i].name %></td>
+        <td data-gender="<%=data[i].gender %>"><%=data[i].gender %></td>
+        <td><%=data[i].ctime %></td>
+        <td>
+          <a href="javascript:;" class="update" >编辑</a>
+          <a href="javascript:;" class="dele">删除</a>
+        </td>
+      </tr>
+    <% } %>
+  </script>
+  <script type="text/template" id='update'>
+    <!-- 编辑 -->
+          <form class="ui form">
+            <div class="field">
+              <label>名称:</label>
+              <input type="text" name="name" value="<%=data[0].name%>" >
+            </div>
+            <div class="field">
+              <label>性别:</label>
+              <select name="gender" class="ui fluid dropdown" id="select">
+                <option value="男">男</option>
+                <option value="女">女</option>
+              </select>
+            </div>
+          </form>
+       
+
+   
+  </script>
+</body>
+
+</html>
