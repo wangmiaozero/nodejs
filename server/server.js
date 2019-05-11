@@ -4,6 +4,11 @@ const express=require("express");
 const app=express();
 //导入mysql 模块
 // const mysql=require('mysql');
+// No 'Access-Control-Allow-Origin' header is present on the requested resource.
+// app.all('*', function (req, res, next) {
+//     res.header('Access-Control-Allow-Origin', '*')
+//     next()
+// })
 //注册中间件
 const bodyParser =require('body-parser');
 app.use(bodyParser.urlencoded({extended:false}))
